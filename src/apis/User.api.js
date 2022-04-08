@@ -1,4 +1,4 @@
-import { axiosWrapper } from ".";
+import { axiosWrapper, getAuthorizationHeader } from ".";
 
 export class UserApi {
     static async login(username) {
@@ -7,7 +7,7 @@ export class UserApi {
     }
     
     static async logout() {
-        return axiosWrapper.post(`/auth/logout`)
+        return axiosWrapper.post(`/auth/logout`, {}, getAuthorizationHeader())
             .then(res => res.data);
     }
 
@@ -17,7 +17,7 @@ export class UserApi {
     }
 
     static async updateName(name) {
-        return axiosWrapper.put(`/user`, { name: name })
+        return axiosWrapper.put(`/user`, { name: name }, getAuthorizationHeader())
             .then(res => res.data);
     }
 }
