@@ -24,6 +24,10 @@ REACT_APP_BACKEND_URL=http://localhost:3000
 3. Run `npm start`.
 4. Access from http://localhost:4200.
 
+# How to deploy
+1. Setup configurations from https://github.com/gitname/react-gh-pages
+2. Run `npm run deploy`.
+
 # Credits
 - Socket IO Client - https://socket.io/
 - Material UI - https://mui.com/
