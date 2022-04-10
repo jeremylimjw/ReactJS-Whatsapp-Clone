@@ -3,13 +3,16 @@ A side project developed with the objective to learn and experience the popular 
 
 # Features
 1. Real-time Online/Last seen timestamp  
+![image](https://user-images.githubusercontent.com/25372669/162619056-df6eef2d-8697-40c9-b08d-3409c1bf5388.png)
 2. Real-time message's read receipts Sent/Received/Read states  
+![image](https://user-images.githubusercontent.com/25372669/162619005-52572c7a-1419-4cc0-9bf3-b638ab6c1770.png)
 3. Async text sending - No need to wait for message to send out before typing the next message
+![image](https://user-images.githubusercontent.com/25372669/162619238-d86a073f-edf0-459e-93b0-ea092da83d66.png)
 4. Lazy loading of messages, triggered by scrolling up
 5. Real-time group chat and direct messaging
 
 # Tech Stack
-- ReactJS 17
+- ReactJS v17
 - ExpressJS
 - MongoDB
 
@@ -19,7 +22,6 @@ Prerequisite: Backend server is running
 2. Create `.env` file in root directory with the following:
 ```
 PORT=4200
-REACT_APP_BACKEND_URL=http://localhost:3000
 ```
 3. Run `npm start`.
 4. Access from http://localhost:4200.
