@@ -5,9 +5,10 @@ import { useApp } from '../providers/AppProvider';
 import ChatBox from './ChatBox';
 import Details from './Details';
 import NewChat from './NewChat';
+import Profile from './Profile';
 
 export default function Chat() {
-    const { showDetailsPanel, showNewFormPanel, selectedChatId } = useApp();
+    const { showDetailsPanel, showNewFormPanel, showProfilePanel, selectedChatId } = useApp();
 
     return (
         <Paper sx={styles.container}>
@@ -20,6 +21,9 @@ export default function Chat() {
             }
             { showNewFormPanel && 
                 <NewChat />
+            }
+            { showProfilePanel && 
+                <Profile />
             }
         </Paper>
     )
