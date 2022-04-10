@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+export const DEV_BACKEND_URL = 'http://localhost:3000';
+
 export const axiosWrapper = axios.create({
-    baseURL: `${process.env.REACT_APP_BACKEND_URL}/api`,
+    baseURL: `${process.env.REACT_APP_BACKEND_URL || DEV_BACKEND_URL}/api`,
     withCredentials: true
 });
 

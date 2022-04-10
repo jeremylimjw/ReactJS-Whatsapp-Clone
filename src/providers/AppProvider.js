@@ -1,6 +1,7 @@
 
 import { useState, useEffect, useContext, createContext, useCallback  } from "react";
 import { io } from "socket.io-client";
+import { DEV_BACKEND_URL } from "../apis";
 import { UserApi } from "../apis/User.api";
 import { parseMediumDateTime } from "../utils/datetime.util";
 
@@ -23,6 +24,7 @@ export function AppProvider({ children }) {
 
     const [showDetailsPanel, setShowDetailsPanel] = useState(false);
     const [showNewFormPanel, setShowNewFormPanel] = useState(false);
+    const [showProfilePanel, setShowProfilePanel] = useState(false);
 
 
     function logout() {
@@ -49,7 +51,7 @@ export function AppProvider({ children }) {
     useEffect(() => {
         if (user === null) return;
 
-        const socket = io(process.env.REACT_APP_BACKEND_URL, { query: { id: user._id, name: user.username } });
+        const socket = io(process.env.REACT_APP_BACKEND_URL || DEV_BACKEND_URL, { query: { id: user._id, name: user.username } });
         socket.connect();
 
         setSocket(socket);
@@ -281,6 +283,7 @@ export function AppProvider({ children }) {
                 selectedChatId, setSelectedChatId,
                 showDetailsPanel, setShowDetailsPanel,
                 showNewFormPanel, setShowNewFormPanel,
+                showProfilePanel, setShowProfilePanel,
                 contacts, setContacts,
                 getChannelLabel,
                 getParticipantLabel,

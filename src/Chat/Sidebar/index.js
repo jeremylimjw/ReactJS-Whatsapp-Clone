@@ -9,7 +9,7 @@ import { handleHttpError } from '../../utils/error.util';
 import { parseTime } from '../../utils/datetime.util';
 
 export default function Sidebar() {
-    const { user, channels, setChannels, chat, setChat, setContacts, selectedChatId, setSelectedChatId, logout, setShowNewFormPanel, getChannelLabel, getParticipantLabel } = useApp();
+    const { user, channels, setChannels, chat, setChat, setContacts, selectedChatId, setSelectedChatId, logout, setShowNewFormPanel, setShowProfilePanel, getChannelLabel, getParticipantLabel } = useApp();
 
     const [loading, setLoading] = useState(false);
     
@@ -51,26 +51,45 @@ export default function Sidebar() {
         }
     }
 
+    // Handle new chat button click
+    function handleNewChatClick(e) {
+        e.stopPropagation();
+        setShowNewFormPanel(true);
+    }
+
+    // Handle logout button click
+    function handleLogoutClick(e) {
+        e.stopPropagation();
+        logout();
+    }
+
+    // Handle appbar click
+    function handleAppBarClick() {
+        setShowProfilePanel(true);
+    }
+
     return (
         <Box sx={styles.container}>
             <AppBar position="static" color="transparent" sx={styles.appBar}>
-                <Toolbar sx={{ padding: '0 18px 0 18px' }} disableGutters>
+                <ListItemButton sx={{ padding: 0 }} onClick={handleAppBarClick}>
+                    <Toolbar sx={{ padding: '0 18px 0 18px', width: '100%' }} disableGutters>
 
-                    <Avatar sx={styles.appBarIcon}>N</Avatar>
+                        <Avatar sx={styles.appBarIcon}>{(user.name || user.username).charAt(0)}</Avatar>
 
-                    <Typography variant="button" component="div" sx={styles.appBarText}>
-                        {user.name || user.username}
-                    </Typography>
+                        <Typography variant="button" component="div" sx={styles.appBarText}>
+                            {user.name || user.username}
+                        </Typography>
 
-                    <IconButton sx={{ mr: 1 }} size="large" edge="start" onClick={() => setShowNewFormPanel(true)}>
-                        <AddIcon />
-                    </IconButton>
+                        <IconButton sx={{ mr: 1 }} size="large" edge="start" onClick={handleNewChatClick}>
+                            <AddIcon />
+                        </IconButton>
 
-                    <IconButton size="large" edge="start" onClick={logout}>
-                        <LogoutIcon />
-                    </IconButton>
+                        <IconButton size="large" edge="start" onClick={handleLogoutClick}>
+                            <LogoutIcon />
+                        </IconButton>
 
-                </Toolbar>
+                    </Toolbar>
+                </ListItemButton>
             </AppBar>
             
             <List sx={styles.list}>
